@@ -137,10 +137,10 @@ class Solver(object):
         self.load_model()
         accuracy = 0
         for epoch in range(1, self.epochs + 1):
-            self.scheduler.step(epoch)
             print("\n===> epoch: %d/200" % epoch)
             train_result = self.train()
             print(train_result)
+            self.scheduler.step(epoch)
             test_result = self.test()
             accuracy = max(accuracy, test_result[1])
             if epoch == self.epochs:
